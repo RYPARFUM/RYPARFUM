@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RY PARFUM | Moreno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dorado: #c5a059;
+            --negro: #000000;
+            --gris-claro: #f4f4f4;
+            --blanco: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--blanco);
+            margin: 0;
+            padding: 0;
+            color: var(--negro);
+        }
+
+        /* Encabezado */
+        header {
+            background-color: var(--negro);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--dorado);
+        }
+
+        header h1 {
+            margin: 0;
+            letter-spacing: 8px;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: var(--dorado);
+            margin-top: 10px;
+        }
+
+        /* Buscador */
+        .search-container {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        #buscador {
+            width: 90%;
+            max-width: 600px;
+            padding: 15px 25px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        #buscador:focus {
+            border-color: var(--dorado);
+        }
+
+        /* Secciones */
+        .section-title {
+            text-align: center;
+            margin: 40px 0 20px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Catálogo Grid */
+        .catalogo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--blanco);
+            border: 1px solid #eee;
+            padding: 20px;
+            text-align: center;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            border-color: var(--dorado);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin: 15px 0 5px;
+            text-transform: uppercase;
+        }
+
+        .card .notas {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .card .precios {
+            background: var(--gris-claro);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .precio-lista {
+            font-size: 0.9rem;
+            color: #444;
+            display: block;
+        }
+
+        .precio-efectivo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--negro);
+            display: block;
+        }
+
+        .btn-wa {
+            background-color: var(--negro);
+            color: var(--dorado);
+            border: 1px solid var(--dorado);
+            padding: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .btn-wa:hover {
+            background-color: var(--dorado);
+            color: var(--negro);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--negro);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .faq {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            text-align: left;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        .faq h4 { color: var(--dorado); margin-bottom: 5px; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .catalogo { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>RY PARFUM</h1>
+    <p>FRAGMENTOS DE EXCLUSIVIDAD</p>
+</header>
+
+<div class="search-container">
+    <input type="text" id="buscador" placeholder="Buscar por nombre, marca o notas..." onkeyup="filtrar()">
+</div>
+
+<h2 class="section-title">Nuestras Fragancias</h2>
+
+<div class="catalogo" id="lista-productos">
+    </div>
+
+<footer>
+    <div class="faq">
+        <h4>¿Son originales?</h4>
+        <p>Sí, garantizamos 100% originalidad en todas nuestras líneas.</p>
+        <h4>¿Cómo comprar?</h4>
+        <p>Trabajamos por pedido. Consultanos stock o encargá el tuyo. Retiros en Marcos del Bueno 636, Moreno.</p>
+        <h4>Medios de Pago</h4>
+        <p>Efectivo (10% OFF), Transferencia Bancaria y Mercado Pago.</p>
+    </div>
+    <p>&copy; 2026 RY PARFUM - Moreno, Buenos Aires</p>
+</footer>
+
+<script>
+    const productos = [
+        {nombre: "Lattafa Asad", notas: "Pimienta negra, tabaco y vainilla", lista: 73440, efectivo: 66096, cat: "Árabe"},
+        {nombre: "Lattafa Khamrah", notas: "Canela, dátiles y praliné", lista: 59670, efectivo: 53703, cat: "Árabe"},
+        {nombre: "Lattafa Yara Pink", notas: "Marshmallow, vainilla y frutas", lista: 64260, efectivo: 57834, cat: "Árabe"},
+        {nombre: "Afnan 9PM", notas: "Manzana, canela y vainilla", lista: 73440, efectivo: 66096, cat: "Árabe"},
+        {nombre: "Sauvage EDP", notas: "Bergamota y ambroxan potente", lista: 265500, efectivo: 238950, cat: "Diseñador"},
+        {nombre: "Bad Boy EDT", notas: "Pimienta blanca, cacao y tonka", lista: 177750, efectivo: 159975, cat: "Diseñador"},
+        {nombre: "Xerjoff Erba Pura", notas: "Frutas cítricas y vainilla", lista: 438750, efectivo: 394875, cat: "Nicho"},
+        {nombre: "Good Girl", notas: "Almendra, café y nardos", lista: 218250, efectivo: 196425, cat: "Diseñador"},
+        {nombre: "Hawas For Him", notas: "Manzana, ciruela y notas marinas", lista: 66555, efectivo: 59900, cat: "Árabe"},
+        {nombre: "Club De Nuit Intense", notas: "Limón, abedul y almizcle", lista: 82620, efectivo: 74358, cat: "Árabe"},
+        {nombre: "Stronger With You", notas: "Cardamomo, castaña y vainilla", lista: 216000, efectivo: 194400, cat: "Diseñador"}
+        // Aquí podés seguir agregando todos los del Excel siguiendo el mismo formato
+    ];
+
+    function mostrarProductos(db) {
+        const contenedor = document.getElementById('lista-productos');
+        contenedor.innerHTML = '';
+        db.forEach(p => {
+            contenedor.innerHTML += `
+                <div class="card" data-nombre="${p.nombre} ${p.notas}">
+                    <div>
+                        <h3>${p.nombre}</h3>
+                        <p class="notas">${p.notas}</p>
+                    </div>
+                    <div class="precios">
+                        <span class="precio-lista">Lista/MP: $${p.lista.toLocaleString()}</span>
+                        <span class="precio-efectivo">Efectivo: $${p.efectivo.toLocaleString()}</span>
+                    </div>
+                    <a href="https://wa.me/5491163605504?text=Hola RY PARFUM! Quiero encargar ${p.nombre}" class="btn-wa">CONSULTAR / ENCARGAR</a>
+                </div>
+            `;
+        });
+    }
+
+    function filtrar() {
+        let busqueda = document.getElementById('buscador').value.toLowerCase();
+        let cards = document.getElementsByClassName('card');
+        for (let card of cards) {
+            let contenido = card.getAttribute('data-nombre').toLowerCase();
+            card.style.display = contenido.includes(busqueda) ? "flex" : "none";
+        }
+    }
+
+    mostrarProductos(productos);
+</script>
+
+</body>
+</html>
