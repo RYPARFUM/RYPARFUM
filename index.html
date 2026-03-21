@@ -3,151 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RY PARFUM | Catálogo Completo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>RY PARFUM | Catálogo Exclusivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --dorado: #c5a059; --amarillo: #f1c40f; --verde: #2ecc71; --negro: #000000; --gris: #111; --blanco: #ffffff; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--negro); color: var(--blanco); }
+        :root { --accent: #c5a059; --bg: #f8f8f8; --text: #1a1a1a; --white: #ffffff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+        body { background-color: var(--bg); color: var(--text); }
 
-        nav { background: rgba(0,0,0,0.98); padding: 15px; text-align: center; border-bottom: 1px solid var(--dorado); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Cinzel', serif; font-size: 1.4rem; letter-spacing: 4px; color: var(--dorado); font-weight: 700; }
+        /* HEADER */
+        header { background: #000; color: white; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-weight: 800; letter-spacing: 3px; font-size: 1.5rem; text-transform: uppercase; }
 
-        .search-box { padding: 20px 15px; background: #080808; position: sticky; top: 60px; z-index: 999; }
-        #buscador { width: 100%; padding: 14px 20px; border-radius: 30px; border: 1px solid var(--dorado); background: #1a1a1a; color: white; font-size: 16px; outline: none; }
+        /* FILTROS DE MARCAS (Estilo Categorías) */
+        .brand-nav { background: white; padding: 10px; display: flex; overflow-x: auto; gap: 10px; border-bottom: 1px solid #ddd; sticky; top: 65px; z-index: 999; }
+        .brand-chip { background: #eee; padding: 8px 18px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; cursor: pointer; transition: 0.3s; border: 1px solid transparent; }
+        .brand-chip.active { background: var(--accent); color: white; }
 
-        .container { width: 100%; padding: 0 15px 50px; }
-        .section-header { border-left: 4px solid var(--dorado); padding-left: 10px; margin: 30px 0 15px; }
-        .section-header h2 { font-family: 'Cinzel', serif; color: var(--dorado); font-size: 1.1rem; text-transform: uppercase; }
+        /* BUSCADOR */
+        .search-container { padding: 15px; }
+        #buscador { width: 100%; padding: 12px 20px; border-radius: 8px; border: 1px solid #ddd; font-size: 1rem; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
 
-        .accordion { margin-bottom: 10px; border: 1px solid #222; border-radius: 8px; overflow: hidden; background: var(--gris); }
-        .acc-header { padding: 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; background: #111; }
-        .acc-content { display: none; padding: 15px; grid-template-columns: 1fr; gap: 15px; background: #000; }
-        @media(min-width: 600px) { .acc-content { grid-template-columns: 1fr 1fr; } }
+        /* GRILLA DE PRODUCTOS */
+        .products-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); /* 2 columnas en el celu */
+            gap: 12px; 
+            padding: 12px; 
+        }
+        @media(min-width: 768px) { .products-grid { grid-template-columns: repeat(4, 1fr); } }
 
-        .card { background: #080808; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #1a1a1a; position: relative; }
-        .img-container { width: 100%; height: 180px; background: #fff; border-radius: 8px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; padding: 10px; }
-        .card img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .card h3 { font-size: 0.85rem; margin-bottom: 8px; min-height: 35px; color: #eee; }
+        .item-card { background: var(--white); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: relative; border: 1px solid #eee; }
+        .item-img { width: 100%; aspect-ratio: 1/1; background: #fff; padding: 10px; display: flex; align-items: center; justify-content: center; }
+        .item-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .item-info { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .item-brand { font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+        .item-name { font-size: 0.85rem; font-weight: 600; line-height: 1.2; margin-bottom: 8px; height: 32px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
         
-        .p-trans { font-size: 0.75rem; color: var(--amarillo); font-weight: 600; }
-        .p-cash { display: block; font-size: 1.25rem; color: var(--verde); font-weight: 800; margin-top: 4px; }
-        .btn-wa { display: block; margin-top: 12px; background: var(--blanco); color: #000; text-decoration: none; padding: 12px; font-size: 0.75rem; font-weight: 800; border-radius: 5px; text-transform: uppercase; }
+        .price-tag { background: #f0f0f0; padding: 8px; border-radius: 4px; text-align: center; }
+        .price-efectivo { color: #27ae60; font-weight: 800; font-size: 1.1rem; display: block; }
+        .price-lista { font-size: 0.7rem; color: #666; text-decoration: line-through; }
 
-        .ig-float { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1001; text-decoration: none; }
-        footer { padding: 40px 20px; text-align: center; color: #444; font-size: 0.75rem; border-top: 1px solid #111; }
-        .ig-link { color: var(--dorado); text-decoration: none; font-weight: 700; margin-bottom: 10px; display: inline-block; }
+        .btn-buy { background: #000; color: white; text-align: center; padding: 10px; text-decoration: none; font-size: 0.75rem; font-weight: 700; margin-top: 10px; border-radius: 4px; }
+
+        /* BOTÓN INSTAGRAM */
+        .ig-btn { position: fixed; bottom: 20px; right: 20px; background: #E1306C; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1001; }
+
+        .footer { text-align: center; padding: 40px 20px; color: #888; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-<nav><div class="logo">RY PARFUM</div></nav>
+<header><div class="logo">RY PARFUM</div></header>
 
-<div class="search-box">
-    <input type="text" id="buscador" placeholder="Buscar perfume o marca..." onkeyup="filtrar()">
+<div class="brand-nav" id="brandNav">
+    <div class="brand-chip active" onclick="filtrarMarca('TODOS', this)">TODOS</div>
+    </div>
+
+<div class="search-container">
+    <input type="text" id="buscador" placeholder="Buscar perfume..." onkeyup="buscar()">
 </div>
 
-<div class="container">
-    <div class="section-header"><h2>Fragancias Árabes</h2></div>
-    <div id="lista-arabes"></div>
+<div class="products-grid" id="mainGrid">
+    </div>
 
-    <div class="section-header"><h2>Línea Diseñador</h2></div>
-    <div id="lista-disenador"></div>
+<a href="https://instagram.com/TU_USUARIO" class="ig-btn"><i class="fab fa-instagram"></i></a>
+
+<div class="footer">
+    RY PARFUM © 2026<br>MORENO, BUENOS AIRES
 </div>
-
-<a href="https://www.instagram.com/TU_IG_AQUI" class="ig-float" target="_blank"><i class="fab fa-instagram"></i></a>
-
-<footer>
-    <a href="https://www.instagram.com/TU_IG_AQUI" class="ig-link">@TU_IG_AQUI</a><br>
-    MARCOS DEL BUENO 636, MORENO | RY PARFUM © 2026
-</footer>
 
 <script>
-    // --- LISTA DE PERFUMES ---
-    // m = MARCA, n = NOMBRE, l = LISTA (Transf), e = EFECTIVO, t = TIPO (A: Árabe, D: Diseñador)
+    // CARGA ACÁ TUS PRODUCTOS
     const perfumes = [
-        // ÁRABES
-        { t:"A", m: "LATTAFA", n: "Khamrah", l: "59.670", e: "53.703" },
-        { t:"A", m: "LATTAFA", n: "Asad", l: "64.260", e: "57.834" },
-        { t:"A", m: "LATTAFA", n: "Yara Pink", l: "61.965", e: "55.769" },
-        { t:"A", m: "ARMAF", n: "Club De Nuit Intense", l: "75.735", e: "68.162" },
-        { t:"A", m: "RASASI", n: "Hawas For Him", l: "68.850", e: "61.965" },
-        { t:"A", m: "FRENCH AVENUE", n: "Vulcan Feu", l: "100.980", e: "90.882" },
-        { t:"A", m: "AFNAN", n: "9PM Night Out", l: "119.340", e: "107.406" },
-        { t:"A", m: "AL HARAMAIN", n: "Amber Oud Gold", l: "95.000", e: "85.500" },
-
-        // DISEÑADOR (Agrega todas las que quieras, se separan solas)
-        { t:"D", m: "DIOR", n: "Sauvage Parfum", l: "319.500", e: "287.550" },
-        { t:"D", m: "JPG", n: "Le Male Elixir", l: "238.500", e: "214.650" },
-        { t:"D", m: "GIORGIO ARMANI", n: "Acqua Di Gio Profondo", l: "185.000", e: "166.500" },
-        { t:"D", m: "CAROLINA HERRERA", n: "Bad Boy Extreme", l: "195.000", e: "175.500" },
-        { t:"D", m: "VERSACE", n: "Eros Flame", l: "140.000", e: "126.000" }
+        { m: "LATTAFA", n: "Khamrah", l: "59.670", e: "53.703" },
+        { m: "LATTAFA", n: "Asad", l: "64.260", e: "57.834" },
+        { m: "LATTAFA", n: "Yara Pink", l: "61.965", e: "55.769" },
+        { m: "AFNAN", n: "9PM Night Out", l: "119.340", e: "107.406" },
+        { m: "RASASI", n: "Hawas For Him", l: "68.850", e: "61.965" },
+        { m: "FRENCH AVENUE", n: "Vulcan Feu", l: "100.980", e: "90.882" },
+        { m: "ARMAF", n: "Club De Nuit Intense", l: "75.735", e: "68.162" },
+        { m: "DIOR", n: "Sauvage Parfum", l: "319.500", e: "287.550" },
+        { m: "JPG", n: "Le Male Elixir", l: "238.500", e: "214.650" }
     ];
 
-    function generarCatalogo() {
-        const contArabes = document.getElementById('lista-arabes');
-        const contDisenador = document.getElementById('lista-disenador');
-
-        // Obtener marcas únicas por tipo
-        const marcasA = [...new Set(perfumes.filter(p=>p.t==="A").map(p=>p.m))].sort();
-        const marcasD = [...new Set(perfumes.filter(p=>p.t==="D").map(p=>p.m))].sort();
-
-        const renderGrupo = (marcas, contenedor) => {
-            marcas.forEach(marca => {
-                const lista = perfumes.filter(p => p.m === marca);
-                const acc = document.createElement('div');
-                acc.className = 'accordion';
-                acc.innerHTML = `
-                    <div class="acc-header" onclick="toggleAcc(this)">
-                        ${marca} <span>(${lista.length})</span> <i class="fas fa-chevron-down"></i>
+    function render() {
+        const grid = document.getElementById('mainGrid');
+        const nav = document.getElementById('brandNav');
+        
+        // Renderizar Productos
+        grid.innerHTML = perfumes.map(p => `
+            <div class="item-card" data-brand="${p.m}" data-name="${p.n.toLowerCase()}">
+                <div class="item-img">
+                    <img src="FOTOS/${p.n.replace(/\s+/g, '_').toLowerCase()}.jpg" onerror="this.src='https://via.placeholder.com/200?text=Perfume'">
+                </div>
+                <div class="item-info">
+                    <div>
+                        <span class="item-brand">${p.m}</span>
+                        <h3 class="item-name">${p.n}</h3>
                     </div>
-                    <div class="acc-content">
-                        ${lista.map(p => `
-                            <div class="card" data-search="${p.n} ${p.m}">
-                                <div class="img-container">
-                                    <img src="FOTOS/${p.n.replace(/\s+/g, '_').toLowerCase()}.jpg" onerror="this.src='https://via.placeholder.com/200?text=RY+PARFUM'">
-                                </div>
-                                <h3>${p.n}</h3>
-                                <div class="price-box">
-                                    <span class="p-trans">TRANSF: $${p.l}</span>
-                                    <span class="p-cash">$${p.e} <small>EFECTIVO</small></span>
-                                </div>
-                                <a href="https://wa.me/5491163605504?text=Hola! Quiero consultar por ${p.n}" class="btn-wa">Consultar</a>
-                            </div>
-                        `).join('')}
-                    </div>`;
-                contenedor.appendChild(acc);
-            });
-        };
+                    <div>
+                        <div class="price-tag">
+                            <span class="price-lista">$${p.l}</span>
+                            <span class="price-efectivo">$${p.e}</span>
+                        </div>
+                        <a href="https://wa.me/5491163605504?text=Hola! Quiero el ${p.n}" class="btn-buy">COMPRAR</a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
 
-        renderGrupo(marcasA, contArabes);
-        renderGrupo(marcasD, contDisenador);
+        // Generar Chips de Marcas dinámicos
+        const marcas = [...new Set(perfumes.map(p => p.m))].sort();
+        marcas.forEach(m => {
+            const chip = document.createElement('div');
+            chip.className = 'brand-chip';
+            chip.innerText = m;
+            chip.onclick = () => filtrarMarca(m, chip);
+            nav.appendChild(chip);
+        });
     }
 
-    function toggleAcc(el, forceOpen = false) {
-        const content = el.nextElementSibling;
-        const icon = el.querySelector('i');
-        const isOpen = content.style.display === "grid";
-        content.style.display = (isOpen && !forceOpen) ? "none" : "grid";
-        icon.className = (isOpen && !forceOpen) ? "fas fa-chevron-down" : "fas fa-chevron-up";
+    function filtrarMarca(marca, el) {
+        // Estilo de los chips
+        document.querySelectorAll('.brand-chip').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+
+        // Filtrar cards
+        document.querySelectorAll('.item-card').forEach(card => {
+            if (marca === 'TODOS' || card.getAttribute('data-brand') === marca) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
     }
 
-    function filtrar() {
+    function buscar() {
         const q = document.getElementById('buscador').value.toLowerCase();
-        document.querySelectorAll('.card').forEach(card => {
-            const match = card.getAttribute('data-search').toLowerCase().includes(q);
-            card.style.display = match ? 'block' : 'none';
-            if(match && q !== "") toggleAcc(card.closest('.acc-content').previousElementSibling, true);
-        });
-
-        document.querySelectorAll('.accordion').forEach(acc => {
-            const hasVisible = [...acc.querySelectorAll('.card')].some(c => c.style.display === 'block');
-            acc.style.display = hasVisible ? 'block' : 'none';
+        document.querySelectorAll('.item-card').forEach(card => {
+            const name = card.getAttribute('data-name');
+            const brand = card.getAttribute('data-brand').toLowerCase();
+            card.style.display = (name.includes(q) || brand.includes(q)) ? 'flex' : 'none';
         });
     }
 
-    generarCatalogo();
+    render();
 </script>
 </body>
 </html>
