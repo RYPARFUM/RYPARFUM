@@ -1,277 +1,299 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RY PARFUM | Luxury Experience</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --dorado: #c5a059; --negro: #111111; --blanco: #ffffff; --gris: #f8f8f8; }
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; background: var(--blanco); color: var(--negro); }
+        :root { --dorado: #c5a059; --amarillo: #f1c40f; --verde: #2ecc71; --negro: #000000; --gris: #111; --blanco: #ffffff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+        body { background-color: var(--negro); color: var(--blanco); overflow-x: hidden; }
 
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: var(--blanco); position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid #eee; }
-        .logo { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 4px; }
-        .menu a { text-decoration: none; color: var(--negro); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-left: 15px; }
+        nav { background: rgba(0,0,0,0.95); padding: 20px; text-align: center; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Cinzel', serif; font-size: 1.6rem; letter-spacing: 5px; color: var(--dorado); font-weight: 700; }
 
-        /* BANNER */
-        .hero { 
-            height: 65vh; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('TU_BANNER_SPRAY.jpg'); 
-            background-size: cover; background-position: center; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
-        }
-        .hero h2 { font-family: 'Cinzel', serif; font-size: 3rem; letter-spacing: 12px; margin: 0; }
-        .hero p { letter-spacing: 4px; color: var(--dorado); margin-top: 10px; font-size: 0.8rem; }
+        .main-banner { width: 100%; height: 300px; background: url('FOTOS/banner_principal.jpg') no-repeat center center; background-size: cover; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--dorado); }
+        .banner-text { text-align: center; background: rgba(0,0,0,0.7); padding: 20px; border-radius: 5px; border: 1px solid var(--dorado); }
+        .banner-text h1 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--dorado); margin-bottom: 5px; }
 
-        section { padding: 60px 5%; }
-        .section-title { text-align: center; font-family: 'Cinzel', serif; font-size: 1.8rem; letter-spacing: 5px; margin-bottom: 40px; text-transform: uppercase; }
+        .search-box { padding: 20px; text-align: center; background: #080808; }
+        #buscador { width: 90%; max-width: 500px; padding: 12px 20px; border-radius: 25px; border: 1px solid #333; background: #1a1a1a; color: white; outline: none; }
 
-        /* BUSCADOR */
-        .search-container { text-align: center; margin-bottom: 40px; }
-        #buscador { width: 80%; max-width: 400px; padding: 12px; border: none; border-bottom: 2px solid var(--negro); outline: none; font-family: 'Montserrat'; font-size: 1rem; text-align: center; }
+        .container { width: 95%; max-width: 1200px; margin: auto; padding-bottom: 50px; }
+        .section-title { font-family: 'Cinzel', serif; color: var(--dorado); text-align: center; margin: 40px 0 15px; letter-spacing: 3px; text-transform: uppercase; font-size: 1.3rem; border-bottom: 1px solid #222; padding-bottom: 10px; }
 
-        /* ACORDEONES */
-        .accordion { border: 1px solid #eee; margin-bottom: 10px; }
-        .accordion-header { background: #fff; padding: 20px; cursor: pointer; font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; display: flex; justify-content: space-between; }
-        .accordion-content { display: none; padding: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; background: var(--gris); }
+        .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+        .highlight-item { position: relative; height: 150px; border-radius: 10px; overflow: hidden; border: 1px solid var(--dorado); }
+        .highlight-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+        .highlight-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 800; text-transform: uppercase; font-size: 0.9rem; color: var(--blanco); text-shadow: 2px 2px 4px #000; }
 
-        /* CARDS */
-        .card { background: white; padding: 25px; text-align: center; border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; background: #fff; }
-        .card h3 { font-size: 0.8rem; letter-spacing: 1px; margin: 10px 0; height: 35px; }
-        .card .notas { font-size: 0.65rem; color: #777; margin-bottom: 15px; height: 35px; overflow: hidden; }
+        .accordion { margin-bottom: 10px; border: 1px solid #222; border-radius: 10px; background: var(--gris); overflow: hidden; }
+        .acc-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; }
+        .acc-content { display: none; padding: 15px; grid-template-columns: 1fr; gap: 15px; background: #050505; }
+        @media(min-width: 768px) { .acc-content { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); } }
+
+        /* ESTILO DE LA TARJETA CON ESPACIO DE IMAGEN */
+        .card { background: #000; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #1a1a1a; position: relative; }
+        .img-container { width: 100%; height: 220px; background: #fff; border-radius: 8px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px; }
+        .card img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
-        .prices { margin-bottom: 20px; padding: 10px; border-top: 1px solid #f0f0f0; }
-        .p-trans { display: block; font-size: 0.75rem; color: #888; margin-bottom: 5px; }
-        .p-cash { display: block; font-size: 1.15rem; font-weight: 600; color: var(--negro); }
-        .p-cash span { display: block; font-size: 0.6rem; color: var(--dorado); font-weight: 700; margin-top: 4px; }
+        .card h3 { font-size: 0.8rem; margin-bottom: 10px; min-height: 35px; color: var(--blanco); font-weight: 600; text-transform: uppercase; }
+        
+        .price-box { border-top: 1px solid #222; padding-top: 12px; margin-top: 10px; }
+        .p-trans { display: block; font-size: 0.75rem; color: var(--amarillo); margin-bottom: 4px; font-weight: 600; }
+        .p-cash { display: block; font-size: 1.2rem; color: var(--verde); font-weight: 700; }
+        .p-cash small { display: block; font-size: 0.55rem; color: #888; text-transform: uppercase; }
 
-        .btn-wa { background: var(--negro); color: white; padding: 12px; text-decoration: none; font-size: 0.65rem; letter-spacing: 2px; font-weight: 700; transition: 0.3s; }
-        .btn-wa:hover { background: var(--dorado); }
+        .btn-wa { display: block; margin-top: 15px; background: var(--blanco); color: #000; text-decoration: none; padding: 12px; font-size: 0.7rem; font-weight: 800; border-radius: 5px; text-transform: uppercase; }
 
-        footer { background: var(--negro); color: white; text-align: center; padding: 60px 5%; font-size: 0.7rem; letter-spacing: 2px; }
+        .client-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 20px; }
+        .client-gallery img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid #333; }
+
+        footer { padding: 50px 20px; text-align: center; font-size: 0.7rem; color: #444; border-top: 1px solid #111; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo">RY PARFUM</div>
-    <div class="menu">
-        <a href="#arabes">Árabes</a>
-        <a href="#disenador">Diseñador</a>
-        <a href="#nosotros">Nosotros</a>
+<nav><div class="logo">RY PARFUM</div></nav>
+
+<div class="main-banner">
+    <div class="banner-text">
+        <h1>RY PARFUM EXCLUSIVE</h1>
+        <p>Los mejores perfumes del mundo en un solo lugar</p>
     </div>
-</nav>
+</div>
 
-<section class="hero">
-    <h2>RY PARFUM</h2>
-    <p>MARCOS DEL BUENO 636, MORENO</p>
-</section>
+<div class="search-box">
+    <input type="text" id="buscador" placeholder="BUSCAR PERFUME O MARCA..." onkeyup="filtrar()">
+</div>
 
-<section>
-    <div class="search-container">
-        <input type="text" id="buscador" placeholder="BUSCAR PERFUME O MARCA..." onkeyup="filtrar()">
+<div class="container">
+    <div class="highlight-grid">
+        <div class="highlight-item">
+            <img src="FOTOS/novedades.jpg" onerror="this.src='https://via.placeholder.com/400x200?text=NOVEDADES'">
+            <div class="highlight-label">Novedades 🔥</div>
+        </div>
+        <div class="highlight-item">
+            <img src="FOTOS/bestsellers.jpg" onerror="this.src='https://via.placeholder.com/400x200?text=BEST+SELLERS'">
+            <div class="highlight-label">Best Sellers 🏆</div>
+        </div>
     </div>
 
-    <h2 class="section-title">Lo Más Vendido</h2>
-    <div id="top-ventas" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;"></div>
-</section>
-
-<section id="arabes">
-    <h2 class="section-title">Perfumes Árabes</h2>
+    <h2 class="section-title">Fragancias Árabes</h2>
     <div id="lista-arabes"></div>
-</section>
 
-<section id="disenador">
     <h2 class="section-title">Perfumes de Diseñador</h2>
     <div id="lista-disenador"></div>
-</section>
 
-<section id="nosotros" style="background: var(--gris); text-align: center;">
-    <h2 class="section-title">Nosotros</h2>
-    <p style="max-width: 600px; margin: 0 auto; line-height: 2; font-weight: 300;">
-        Especialistas en Moreno. Fragancias 100% originales. Envíos a todo el país.
-    </p>
-</section>
+    <h2 class="section-title">Pedidos & Clientes</h2>
+    <div class="client-gallery">
+        <img src="FOTOS/pedido1.jpg" onerror="this.src='https://via.placeholder.com/200x200?text=Envio+1'">
+        <img src="FOTOS/pedido2.jpg" onerror="this.src='https://via.placeholder.com/200x200?text=Envio+2'">
+        <img src="FOTOS/pedido3.jpg" onerror="this.src='https://via.placeholder.com/200x200?text=Envio+3'">
+        <img src="FOTOS/pedido4.jpg" onerror="this.src='https://via.placeholder.com/200x200?text=Envio+4'">
+    </div>
+</div>
 
-<footer>
-    <p>MARCOS DEL BUENO 636, MORENO | WHATSAPP: 11 6360-5504</p>
-</footer>
+<footer>MARCOS DEL BUENO 636, MORENO | RY PARFUM © 2026</footer>
 
 <script>
     const perfumes = [
-        // ÁRABES - LATTAFA
-        {n: "QAED AL FURSAN WHITE 90ML", m: "LATTAFA", c: "A", nt: "Coco, cítricos y maderas blancas", l: "51.000", e: "46.000"},
-        {n: "QAED AL FURSAN 90ML", m: "LATTAFA", c: "A", nt: "Piña dulce y azafrán ahumado", l: "51.000", e: "46.000"},
-        {n: "LATTAFA CONFIDENTIAL", m: "LATTAFA", c: "A", nt: "Manzana, bergamota y maderas", l: "51.000", e: "46.000"},
-        {n: "LATTAFA AL BADEE FOR GLORY", m: "LATTAFA", c: "A", nt: "Pimienta, lavanda y azafrán", l: "60.000", e: "54.000"},
-        {n: "LATTAFA AL BADEE HONOR AND GLORY", m: "LATTAFA", c: "A", nt: "Piña brulée y canela", l: "60.000", e: "54.000"},
-        {n: "LATTAFA FAKHAR BLACK", m: "LATTAFA", c: "A", nt: "Manzana, lavanda y jengibre", l: "64.000", e: "58.000"},
-        {n: "LATTAFA FAKHAR GOLD PLATIN", m: "LATTAFA", c: "A", nt: "Pimienta rosa y vetiver", l: "78.000", e: "70.000"},
-        {n: "LATTAFA FAKHAR ROSE", m: "LATTAFA", c: "A", nt: "Frutas, rosa y nardos", l: "60.000", e: "54.000"},
-        {n: "LATTAFA ASAD", m: "LATTAFA", c: "A", nt: "Pimienta negra y vainilla", l: "74.000", e: "66.000", top: true},
-        {n: "LATTAFA ASAD BOURBON", m: "LATTAFA", c: "A", nt: "Vainilla y notas ambarinas", l: "81.000", e: "73.000"},
-        {n: "LATTAFA X2 ASAD & ASAD ZANZIBAR", m: "LATTAFA", c: "A", nt: "Especias y Coco tropical", l: "97.000", e: "87.000"},
-        {n: "LATTAFA KHAMRAH QAHWA", m: "LATTAFA", c: "A", nt: "Café, canela y dátiles", l: "60.000", e: "54.000", top: true},
-        {n: "LATTAFA KHAMRAH", m: "LATTAFA", c: "A", nt: "Canela, praliné y vainilla", l: "60.000", e: "54.000", top: true},
-        {n: "LATTAFA KHAMRAH DUKHAN", m: "LATTAFA", c: "A", nt: "Versión ahumada y oscura", l: "60.000", e: "54.000"},
-        {n: "LATTAFA YARA MOI", m: "LATTAFA", c: "A", nt: "Jazmín, durazno y caramelo", l: "57.500", e: "52.000"},
-        {n: "LATTAFA YARA TOUS", m: "LATTAFA", c: "A", nt: "Coco, mango y maracuyá", l: "57.500", e: "52.000"},
-        {n: "LATTAFA YARA PINK", m: "LATTAFA", c: "A", nt: "Marshmallow y vainilla", l: "64.000", e: "58.000", top: true},
-        {n: "LATTAFA YARA CANDEE", m: "LATTAFA", c: "A", nt: "Dulces de frutas y vainilla", l: "60.000", e: "54.000"},
-        {n: "LATTAFA ART OF UNIVERSE", m: "LATTAFA", c: "A", nt: "Oud suave y especias", l: "90.000", e: "81.000", nov: true},
-        {n: "LATTAFA KINGDOM MEN", m: "LATTAFA", c: "A", nt: "Cuero y maderas oscuras", l: "74.000", e: "66.000"},
-        {n: "LATTAFA KINGDOM WOMAN", m: "LATTAFA", c: "A", nt: "Flores blancas y ámbar", l: "69.000", e: "62.000"},
-        {n: "LATTAFA ECLAIRE 100ML MEN", m: "LATTAFA", c: "A", nt: "Maderas frescas y ámbar", l: "67.000", e: "60.000"},
-        {n: "LATTAFA ECLAIRE PISTACHE WOMEN", m: "LATTAFA", c: "A", nt: "Pistacho y vainilla", l: "69.000", e: "62.000"},
-        {n: "LATTAFA SEHR 100ML MEN", m: "LATTAFA", c: "A", nt: "Especiado premium", l: "74.000", e: "66.000"},
+        // --- LATTAFA ---
+        { n: "Qaed Al Fursan", m: "LATTAFA", c: "A", l: "52.785", e: "47.507" },
+        { n: "Qaed Al Fursan White", m: "LATTAFA", c: "A", l: "55.080", e: "49.572" },
+        { n: "Confidential", m: "LATTAFA", c: "A", l: "55.080", e: "49.572" },
+        { n: "Al Badee For Glory", m: "LATTAFA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Al Badee Honor and Glory", m: "LATTAFA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Fakhar Black", m: "LATTAFA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Fakhar Gold Platin", m: "LATTAFA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Fakhar Rose", m: "LATTAFA", c: "A", l: "66.555", e: "59.900" },
+        { n: "Asad", m: "LATTAFA", c: "A", l: "64.260", e: "57.834" },
+        { n: "Asad Bourbon", m: "LATTAFA", c: "A", l: "73.440", e: "66.096" },
+        { n: "X2 Asad & Asad Zanzibar", m: "LATTAFA", c: "A", l: "82.620", e: "74.358" },
+        { n: "Khamrah", m: "LATTAFA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Khamrah Qahwa", m: "LATTAFA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Khamrah Dukhan", m: "LATTAFA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Yara Moi", m: "LATTAFA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Yara Tous", m: "LATTAFA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Yara Pink", m: "LATTAFA", c: "A", l: "61.965", e: "55.769" },
+        { n: "Yara Candee", m: "LATTAFA", c: "A", l: "61.965", e: "55.769" },
+        { n: "Art Of Universe", m: "LATTAFA", c: "A", l: "84.915", e: "76.424" },
+        { n: "Kingdom Men", m: "LATTAFA", c: "A", l: "73.440", e: "66.096" },
+        { n: "Kingdom Woman", m: "LATTAFA", c: "A", l: "57.375", e: "51.638" },
+        { n: "Maahir Black", m: "LATTAFA", c: "A", l: "66.555", e: "59.900" },
+        { n: "Maahir", m: "LATTAFA", c: "A", l: "73.440", e: "66.096" },
+        { n: "Eclaire Men", m: "LATTAFA", c: "A", l: "68.850", e: "61.965" },
+        { n: "Eclaire Pistache Women", m: "LATTAFA", c: "A", l: "96.390", e: "86.751" },
+        { n: "Sehr Men", m: "LATTAFA", c: "A", l: "73.440", e: "66.096" },
+        { n: "Emeer", m: "LATTAFA", c: "A", l: "94.095", e: "84.686" },
+        { n: "Hayaati Black", m: "LATTAFA", c: "A", l: "55.080", e: "49.572" },
+        { n: "Hayaati Al Maleeky", m: "LATTAFA", c: "A", l: "52.785", e: "47.507" },
+        { n: "Hayaati Gold", m: "LATTAFA", c: "A", l: "55.080", e: "49.572" },
+        { n: "Hayaati Florence", m: "LATTAFA", c: "A", l: "55.080", e: "49.572" },
+        { n: "Ajwad", m: "LATTAFA", c: "A", l: "55.080", e: "49.572" },
+        { n: "Vintage Radio", m: "LATTAFA", c: "A", l: "66.555", e: "59.900" },
+        { n: "His Confession", m: "LATTAFA", c: "A", l: "78.030", e: "70.227" },
+        { n: "Her Confession", m: "LATTAFA", c: "A", l: "68.850", e: "61.965" },
 
-        // AFNAN
-        {n: "AFNAN 9PM", m: "AFNAN", c: "A", nt: "Manzana, canela y vainilla", l: "74.000", e: "66.000", top: true},
-        {n: "AFNAN 9PM DIVE", m: "AFNAN", c: "A", nt: "Notas marinas y menta", l: "74.000", e: "66.000"},
-        {n: "AFNAN 9PM REBEL", m: "AFNAN", c: "A", nt: "Frutas rojas y especias", l: "92.000", e: "83.000"},
-        {n: "AFNAN 9PM ELIXIR", m: "AFNAN", c: "A", nt: "Máxima potencia", l: "100.000", e: "90.000"},
-        {n: "AFNAN TURATHI BLUE", m: "AFNAN", c: "A", nt: "Cítricos y maderas", l: "90.000", e: "81.000"},
-        {n: "AFNAN SUPREMACY NOT ONLY", m: "AFNAN", c: "A", nt: "Grosella negra y musgo", l: "113.000", e: "101.000"},
+        // --- AFNAN ---
+        { n: "9PM", m: "AFNAN", c: "A", l: "73.440", e: "66.096" },
+        { n: "9PM Dive", m: "AFNAN", c: "A", l: "73.440", e: "66.096" },
+        { n: "9PM Rebel", m: "AFNAN", c: "A", l: "82.620", e: "74.358" },
+        { n: "9PM Elixir", m: "AFNAN", c: "A", l: "100.980", e: "90.882" },
+        { n: "9PM Night Out", m: "AFNAN", c: "A", l: "119.340", e: "107.406" },
+        { n: "Turathi Blue", m: "AFNAN", c: "A", l: "89.505", e: "80.555" },
+        { n: "Supremacy Not Only", m: "AFNAN", c: "A", l: "112.455", e: "101.210" },
 
-        // ARMAF
-        {n: "ARMAF CLUB DE NUIT INTENSE", m: "ARMAF", c: "A", nt: "Limón y humo", l: "83.000", e: "75.000", top: true},
-        {n: "ARMAF CLUB DE NUIT URBAN ELIXIR", m: "ARMAF", c: "A", nt: "Pimienta y maderas", l: "81.000", e: "73.000"},
-        {n: "ARMAF CLUB DE NUIT ICONIC", m: "ARMAF", c: "A", nt: "Menta y pomelo", l: "100.000", e: "90.000"},
-        {n: "ARMAF CLUB DE NUIT UNTOLD", m: "ARMAF", c: "A", nt: "Azafrán y resinas", l: "95.000", e: "85.000"},
-        {n: "ARMAF CLUB DE NUIT OUD", m: "ARMAF", c: "A", nt: "Oud y frutas", l: "127.000", e: "114.000"},
-        {n: "ARMAF CLUB DE NUIT WOMAN", m: "ARMAF", c: "A", nt: "Rosa y pachulí", l: "69.000", e: "62.000"},
-        {n: "CLUB DE NUIT PRECIUX 55ML", m: "ARMAF", c: "A", nt: "Ámbar noble", l: "127.000", e: "114.000"},
-        {n: "CLUB DE NUIT MALEKA", m: "ARMAF", c: "A", nt: "Frutal-floral", l: "90.000", e: "81.000"},
-        {n: "ARMAF CLUB DE NUIT SILLAGE", m: "ARMAF", c: "A", nt: "Grosella negra", l: "83.000", e: "75.000", nov: true},
+        // --- ARMAF ---
+        { n: "Club De Nuit Intense", m: "ARMAF", c: "A", l: "75.735", e: "68.162" },
+        { n: "Club De Nuit Urban Man Elixir", m: "ARMAF", c: "A", l: "82.620", e: "74.358" },
+        { n: "Club De Nuit Iconic", m: "ARMAF", c: "A", l: "100.980", e: "90.882" },
+        { n: "Club De Nuit Untold", m: "ARMAF", c: "A", l: "94.095", e: "84.686" },
+        { n: "Club De Nuit Oud", m: "ARMAF", c: "A", l: "126.225", e: "113.603" },
+        { n: "Club De Nuit Woman", m: "ARMAF", c: "A", l: "71.145", e: "64.031" },
+        { n: "Club De Nuit Precieux 55ml", m: "ARMAF", c: "A", l: "112.455", e: "101.210" },
+        { n: "Club De Nuit Maleka", m: "ARMAF", c: "A", l: "91.800", e: "82.620" },
+        { n: "Odyssey Sky Mandarin", m: "ARMAF", c: "A", l: "73.440", e: "66.096" },
+        { n: "Odyssey Home White", m: "ARMAF", c: "A", l: "68.850", e: "61.965" },
+        { n: "Mandarin Elixir", m: "ARMAF", c: "A", l: "105.570", e: "95.013" },
 
-        // RASASI (HAWAS)
-        {n: "HAWAS FOR HIM", m: "RASASI", c: "A", nt: "Manzana y notas marinas", l: "67.000", e: "60.000"},
-        {n: "HAWAS ICE", m: "RASASI", c: "A", nt: "Menta helada", l: "104.000", e: "93.000"},
-        {n: "HAWAS TROPICAL", m: "RASASI", c: "A", nt: "Frutas exóticas", l: "104.000", e: "93.000"},
-        {n: "HAWAS FIRE", m: "RASASI", c: "A", nt: "Pimienta roja", l: "104.000", e: "93.000", nov: true},
+        // --- RASASI ---
+        { n: "Hawas For Him", m: "RASASI", c: "A", l: "68.850", e: "61.965" },
+        { n: "Hawas Ice", m: "RASASI", c: "A", l: "105.570", e: "95.013" },
+        { n: "Hawas Tropical", m: "RASASI", c: "A", l: "103.275", e: "92.948" },
+        { n: "Hawas Fire", m: "RASASI", c: "A", l: "91.800", e: "82.620" },
+        { n: "Hawas Malibu", m: "RASASI", c: "A", l: "98.685", e: "88.817" },
 
-        // MAISON ALHAMBRA / OTROS ÁRABES
-        {n: "MAISON ALHAMBRA SALVO", m: "ALHAMBRA", c: "A", nt: "Cítricos y pimienta", l: "55.000", e: "50.000"},
-        {n: "SALVO ELIXIR 60ML", m: "ALHAMBRA", c: "A", nt: "Lavanda intensa", l: "60.000", e: "54.000"},
-        {n: "MAISON ALHAMBRA AMBER LEATHER", m: "ALHAMBRA", c: "A", nt: "Cuero", l: "53.000", e: "48.000"},
-        {n: "MAISON ALHAMBRA DARK OUD", m: "ALHAMBRA", c: "A", nt: "Oud profundo", l: "62.000", e: "56.000"},
-        {n: "MAISON ALHAMBRA OLIVIA", m: "ALHAMBRA", c: "A", nt: "Vainilla salada", l: "62.000", e: "56.000"},
-        {n: "MAISON ALHAMBRA JEAN LOWE NOIR", m: "ALHAMBRA", c: "A", nt: "Oud oscuro", l: "62.000", e: "56.000"},
-        {n: "MAISON ALHAMBRA INMORTEL", m: "ALHAMBRA", c: "A", nt: "Jengibre", l: "65.000", e: "58.000"},
-        {n: "STALLION 53", m: "ALHAMBRA", c: "A", nt: "Sándalo y cuero", l: "67.000", e: "60.000"},
-        {n: "SPECTRE GHOST", m: "ALHAMBRA", c: "A", nt: "Jengibre y vainilla", l: "83.000", e: "75.000"},
-        {n: "SPECTRE MALACHITE", m: "ALHAMBRA", c: "A", nt: "Notas verdes", l: "74.000", e: "66.000"},
+        // --- MAISON ALHAMBRA ---
+        { n: "Salvo", m: "ALHAMBRA", c: "A", l: "57.375", e: "51.638" },
+        { n: "Salvo Elixir 60ml", m: "ALHAMBRA", c: "A", l: "59.670", e: "53.703" },
+        { n: "Amber Leather", m: "ALHAMBRA", c: "A", l: "52.785", e: "47.507" },
+        { n: "Dark Oud", m: "ALHAMBRA", c: "A", l: "61.965", e: "55.769" },
+        { n: "Olivia", m: "ALHAMBRA", c: "A", l: "61.965", e: "55.769" },
+        { n: "Jean Lowe Noir", m: "ALHAMBRA", c: "A", l: "64.260", e: "57.834" },
+        { n: "Inmortel", m: "ALHAMBRA", c: "A", l: "64.260", e: "57.834" },
+        { n: "Spectre Malachite", m: "ALHAMBRA", c: "A", l: "73.440", e: "66.096" },
 
-        // AL HARAMAIN / ORIENTICA / BHARARA
-        {n: "AL HARAMAIN GOLD", m: "AL HARAMAIN", c: "A", nt: "Ambarado dulce", l: "120.000", e: "108.000"},
-        {n: "AL HARAMAIN DUBAI NIGHT", m: "AL HARAMAIN", c: "A", nt: "Maderas", l: "115.000", e: "104.000"},
-        {n: "AL HARAMAIN AQUA DUBAI", m: "AL HARAMAIN", c: "A", nt: "Frescura acuática", l: "126.000", e: "114.000"},
-        {n: "ORIENTICA AMBER ROUGE 150ML", m: "ORIENTICA", c: "A", nt: "Azafrán y resinas", l: "173.000", e: "155.000"},
-        {n: "ORIENTICA AMBER ROUGE 80ML", m: "ORIENTICA", c: "A", nt: "Resinas dulces", l: "159.000", e: "143.000"},
-        {n: "BHARARA KING", m: "BHARARA", c: "A", nt: "Cítricos dulces", l: "134.000", e: "120.000"},
-        {n: "BHARARA KING GOLD", m: "BHARARA", c: "A", nt: "Maderas preciosas", l: "138.000", e: "124.000"},
-        {n: "GAME OF SPADES WILDCARD", m: "GAME OF SPADES", c: "A", nt: "Azafrán", l: "195.000", e: "176.000"},
-        {n: "GAME OF SPADES ROYALE", m: "GAME OF SPADES", c: "A", nt: "Ámbar gris", l: "195.000", e: "176.000"},
+        // --- OTROS ARABES ---
+        { n: "Gold 120ml", m: "AL HARAMAIN", c: "A", l: "112.455", e: "101.210" },
+        { n: "Dubai Night", m: "AL HARAMAIN", c: "A", l: "121.635", e: "109.472" },
+        { n: "Aqua Dubai", m: "AL HARAMAIN", c: "A", l: "114.750", e: "103.275" },
+        { n: "Amber Rouge 150ml", m: "ORIENTICA", c: "A", l: "172.125", e: "154.913" },
+        { n: "Amber Rouge 80ml", m: "ORIENTICA", c: "A", l: "158.355", e: "142.520" },
+        { n: "Tropical Vine", m: "RAYHAAN", c: "A", l: "87.210", e: "78.489" },
+        { n: "Elixir", m: "RAYHAAN", c: "A", l: "78.030", e: "70.227" },
+        { n: "King", m: "BHARARA", c: "A", l: "123.930", e: "111.537" },
+        { n: "King Gold", m: "BHARARA", c: "A", l: "137.700", e: "123.930" },
+        { n: "Spectre Ghost", m: "FRENCH AVENUE", c: "A", l: "82.620", e: "74.358" },
+        { n: "Liquid Brun", m: "FRENCH AVENUE", c: "A", l: "84.915", e: "76.424" },
+        { n: "Vulcan Feu", m: "FRENCH AVENUE", c: "A", l: "100.980", e: "90.882" },
+        { n: "Veneno EDP", m: "FRENCH AVENUE", c: "A", l: "119.340", e: "107.406" },
+        { n: "Wildcard", m: "GAME OF SPADES", c: "A", l: "195.075", e: "175.568" },
+        { n: "Royale", m: "GAME OF SPADES", c: "A", l: "195.075", e: "175.568" },
+        { n: "Stallion 53", m: "OTRO", c: "A", l: "59.670", e: "53.703" },
 
-        // DISEÑADOR HOMBRE
-        {n: "ARMANI CODE EDT 125ML", m: "ARMANI", c: "D", nt: "Cuero y anís", l: "192.000", e: "172.000"},
-        {n: "STRONGER WITH YOU 100ML", m: "ARMANI", c: "D", nt: "Cardamomo", l: "216.000", e: "195.000", top: true},
-        {n: "STRONGER WITH YOU EDT 100ML", m: "ARMANI", c: "D", nt: "Castaña", l: "200.000", e: "180.000"},
-        {n: "AZZARO MOST WANTED PARFUM", m: "AZZARO", c: "D", nt: "Jengibre", l: "200.000", e: "180.000"},
-        {n: "AZZARO MOST WANTED INTENSE", m: "AZZARO", c: "D", nt: "Toffee", l: "196.000", e: "176.000", nov: true},
-        {n: "212 MEN NYC 100ML", m: "CH", c: "D", nt: "Notas verdes", l: "158.000", e: "142.000"},
-        {n: "212 HEROES MEN 100ML", m: "CH", c: "D", nt: "Pera", l: "180.000", e: "162.000"},
-        {n: "BAD BOY EDT 100ML", m: "CH", c: "D", nt: "Cacao", l: "178.000", e: "160.000"},
-        {n: "BAD BOY PARFUM 100ML", nt: "Cuero", m: "CH", c: "D", l: "203.000", e: "183.000"},
-        {n: "SAUVAGE PARFUM 100ML", m: "DIOR", c: "D", nt: "Sándalo", l: "320.000", e: "288.000"},
-        {n: "SAUVAGE EDP 100ML", m: "DIOR", c: "D", nt: "Vainilla", l: "266.000", e: "239.000"},
-        {n: "SAUVAGE ELIXIR 60ML", m: "DIOR", c: "D", nt: "Especias", l: "315.000", e: "284.000"},
-        {n: "JPG LE MALE ELIXIR 125ML", m: "JPG", c: "D", nt: "Miel y tabaco", l: "240.000", e: "215.000"},
-        {n: "JPG LE MALE PARFUM 125ML", m: "JPG", c: "D", nt: "Iris", l: "203.000", e: "183.000"},
-        {n: "JPG LE MALE EDT 125ML", m: "JPG", c: "D", nt: "Menta", l: "180.000", e: "162.000"},
-        {n: "JPG LE BEAU PARADISE GARDEN", m: "JPG", c: "D", nt: "Coco", l: "270.000", e: "243.000"},
-        {n: "SCANDAL LE PARFUM 100ML", m: "JPG", c: "D", nt: "Haba tonka y Caramelo", l: "216.000", e: "195.000"},
-        {n: "SCANDAL EDT 100ML", m: "JPG", c: "D", nt: "Haba tonka", l: "189.000", e: "171.000"},
-        {n: "INVICTUS EDT 100ML", m: "PACO RABANNE", c: "D", nt: "Marino", l: "151.000", e: "136.000"},
-        {n: "INVICTUS ELIXIR 100ML", m: "PACO RABANNE", c: "D", nt: "Incienso", l: "220.000", e: "200.000"},
-        {n: "XS PURE EDT 80ML", m: "PACO RABANNE", c: "D", nt: "Vainilla", l: "191.250", e: "172.125"},
-        {n: "ONE MILLION EDT 100ML", m: "PACO RABANNE", c: "D", nt: "Mandarina", l: "236.250", e: "212.625"},
-
-        // FEMENINOS
-        {n: "JPG LA BELLE PARADISE", m: "JPG", c: "D", nt: "Loto azul", l: "303.750", e: "273.375"},
-        {n: "JPG LA BELLE EDP 100ML", m: "JPG", c: "D", nt: "Pera", l: "281.250", e: "253.125"},
-        {n: "SCANDAL ABSOLU 80ML", m: "JPG", c: "D", nt: "Higo", l: "281.250", e: "253.125"},
-        {n: "SCANDAL EDP 80ML", m: "JPG", c: "D", nt: "Miel", l: "258.750", e: "232.875"},
-        {n: "GOOD GIRL EDP 100ML", m: "CH", c: "D", nt: "Café y nardos", l: "236.250", e: "212.625"},
-        {n: "212 VIP ROSE 100ML", m: "CH", c: "D", nt: "Champán", l: "218.250", e: "196.425"},
-        {n: "LA VIE EST BELLE 75ML", m: "LANCOME", c: "D", nt: "Iris", l: "213.750", e: "192.375"},
-        {n: "XERJOFF ERBA PURA", m: "XERJOFF", c: "D", nt: "Frutas", l: "348.750", e: "313.875"},
-        {n: "TOM FORD BLACK ORCHID", m: "TOM FORD", c: "D", nt: "Orquídea", l: "427.500", e: "384.750"},
-        {n: "MOSCHINO TOY BOY 100ML", m: "MOSCHINO", c: "D", nt: "Rosa", l: "213.750", e: "192.375"}
-        // ... (El resto se carga igual, el motor procesa todos los que pongas en esta lista)
+        // --- DISEÑADOR ---
+        { n: "Armani Code", m: "ARMANI", c: "D", l: "191.250", e: "172.125" },
+        { n: "Stronger With You", m: "ARMANI", c: "D", l: "216.000", e: "194.400" },
+        { n: "Stronger With You EDT", m: "ARMANI", c: "D", l: "200.250", e: "180.225" },
+        { n: "Most Wanted Parfum", m: "AZZARO", c: "D", l: "198.000", e: "178.200" },
+        { n: "Most Wanted Intense", m: "AZZARO", c: "D", l: "195.750", e: "176.175" },
+        { n: "212 Men NYC", m: "CH", c: "D", l: "157.500", e: "141.750" },
+        { n: "212 Heroes", m: "CH", c: "D", l: "180.000", e: "162.000" },
+        { n: "Bad Boy EDT", m: "CH", c: "D", l: "177.750", e: "159.975" },
+        { n: "Bad Boy Parfum", m: "CH", c: "D", l: "202.500", e: "182.250" },
+        { n: "Good Girl", m: "CH", c: "D", l: "218.250", e: "196.425" },
+        { n: "212 VIP Rose", m: "CH", c: "D", l: "218.250", e: "196.425" },
+        { n: "212 VIP Femme", m: "CH", c: "D", l: "191.250", e: "172.125" },
+        { n: "CH La Bomba", m: "CH", c: "D", l: "258.750", e: "232.875" },
+        { n: "Sauvage Parfum", m: "DIOR", c: "D", l: "319.500", e: "287.550" },
+        { n: "Sauvage EDP", m: "DIOR", c: "D", l: "265.500", e: "238.950" },
+        { n: "Sauvage Elixir", m: "DIOR", c: "D", l: "315.000", e: "283.500" },
+        { n: "The One", m: "D&G", c: "D", l: "157.500", e: "141.750" },
+        { n: "Light Blue", m: "D&G", c: "D", l: "139.500", e: "125.550" },
+        { n: "Issey Miyake 125ml", m: "ISSEY MIYAKE", c: "D", l: "135.000", e: "121.500" },
+        { n: "Issey Miyake 200ml", m: "ISSEY MIYAKE", c: "D", l: "186.750", e: "168.075" },
+        { n: "Le Male Elixir", m: "JPG", c: "D", l: "238.500", e: "214.650" },
+        { n: "Le Male Parfum", m: "JPG", c: "D", l: "202.500", e: "182.250" },
+        { n: "Le Male EDT", m: "JPG", c: "D", l: "180.000", e: "162.000" },
+        { n: "Le Beau Paradise Garden", m: "JPG", c: "D", l: "270.000", e: "243.000" },
+        { n: "La Belle Paradise Garden", m: "JPG", c: "D", l: "276.750", e: "249.075" },
+        { n: "La Belle EDP", m: "JPG", c: "D", l: "225.000", e: "202.500" },
+        { n: "Invictus", m: "PACO RABANNE", c: "D", l: "150.750", e: "135.675" },
+        { n: "Invictus Elixir", m: "PACO RABANNE", c: "D", l: "220.500", e: "198.450" },
+        { n: "One Million EDT", m: "PACO RABANNE", c: "D", l: "153.000", e: "137.700" },
+        { n: "One Million EDP", m: "PACO RABANNE", c: "D", l: "191.250", e: "172.125" },
+        { n: "Phantom", m: "PACO RABANNE", c: "D", l: "184.500", e: "166.050" },
+        { n: "XS Pure EDT", m: "PACO RABANNE", c: "D", l: "216.000", e: "194.400" },
+        { n: "XS Pure Black", m: "PACO RABANNE", c: "D", l: "146.250", e: "131.625" },
+        { n: "XS Pure 80ml", m: "PACO RABANNE", c: "D", l: "209.250", e: "188.325" },
+        { n: "Bubble Gum", m: "MOSCHINO", c: "D", l: "132.750", e: "119.475" },
+        { n: "Toy Boy Pearl", m: "MOSCHINO", c: "D", l: "135.000", e: "121.500" },
+        { n: "Toy Boy", m: "MOSCHINO", c: "D", l: "139.500", e: "125.550" },
+        { n: "Eros Flame", m: "VERSACE", c: "D", l: "189.000", e: "170.100" },
+        { n: "Myself", m: "YSL", c: "D", l: "274.500", e: "247.050" },
+        { n: "Erba Pura", m: "XERJOFF", c: "D", l: "438.750", e: "394.875" },
+        { n: "Black Orchid", m: "TOM FORD", c: "D", l: "427.500", e: "384.750" },
+        { n: "Black Orchid Parfum", m: "TOM FORD", c: "D", l: "517.500", e: "465.750" },
+        { n: "Calvin Klein EDT", m: "CK", c: "D", l: "101.250", e: "91.125" },
+        { n: "Scandal Le Parfum", m: "JPG", c: "D", l: "216.000", e: "194.400" },
+        { n: "Scandal EDT", m: "JPG", c: "D", l: "189.000", e: "170.100" },
+        { n: "Scandal Absolu", m: "JPG", c: "D", l: "229.500", e: "206.550" },
+        { n: "Scandal EDP", m: "JPG", c: "D", l: "213.750", e: "192.375" },
+        { n: "La Vie Est Belle", m: "LANCOME", c: "D", l: "213.750", e: "192.375" }
     ];
 
-    function buildCard(p) {
-        return `
-            <div class="card" data-search="${p.n} ${p.m}">
-                <img src="FOTOS/${p.n}.jpg" onerror="this.src='https://via.placeholder.com/300x300?text=RY+PARFUM'">
-                <div>
-                    <h3>${p.n}</h3>
-                    <p class="notas">${p.nt}</p>
-                </div>
-                <div class="prices">
-                    <span class="p-trans">TRANSFERENCIA: $${p.l}</span>
-                    <span class="p-cash">$${p.e} <span>PAGO EN EFECTIVO</span></span>
-                </div>
-                <a href="https://wa.me/5491163605504?text=Hola! Quiero el perfume: ${p.n}" class="btn-wa">ENCARGAR AHORA</a>
-            </div>
-        `;
-    }
-
-    function render() {
-        const top = document.getElementById('top-ventas');
-        const arabes = document.getElementById('lista-arabes');
-        const dis = document.getElementById('lista-disenador');
-
+    function renderizar() {
+        const arabesCont = document.getElementById('lista-arabes');
+        const disenadorCont = document.getElementById('lista-disenador');
+        
         const marcasA = [...new Set(perfumes.filter(p=>p.c==='A').map(p=>p.m))];
         const marcasD = [...new Set(perfumes.filter(p=>p.c==='D').map(p=>p.m))];
 
-        perfumes.filter(p=>p.top).forEach(p=> top.innerHTML += buildCard(p));
-
-        marcasA.forEach(m => {
+        const crearAcc = (marca, lista, contenedor) => {
             const acc = document.createElement('div');
             acc.className = 'accordion';
-            acc.innerHTML = `<div class="accordion-header" onclick="toggle(this)">${m} <span>+</span></div><div class="accordion-content"></div>`;
-            perfumes.filter(p=>p.m===m).forEach(p=> acc.querySelector('.accordion-content').innerHTML += buildCard(p));
-            arabes.appendChild(acc);
-        });
+            const perfMarca = lista.filter(p => p.m === marca);
+            acc.innerHTML = `
+                <div class="acc-header" onclick="toggleAcc(this)">${marca} <span>+</span></div>
+                <div class="acc-content">
+                    ${perfMarca.map(p => `
+                        <div class="card" data-name="${p.n} ${p.m}">
+                            <div class="img-container">
+                                <img src="FOTOS/${p.n.replace(/\s+/g, '_').toLowerCase()}.jpg" onerror="this.src='https://via.placeholder.com/200x220?text=${p.n.replace(/ /g,'+')}'">
+                            </div>
+                            <h3>${p.n}</h3>
+                            <div class="price-box">
+                                <span class="p-trans">TRANSF: $${p.l}</span>
+                                <span class="p-cash">$${p.e} <small>EFECTIVO</small></span>
+                            </div>
+                            <a href="https://wa.me/5491163605504?text=Hola! Quiero consultar por ${p.n}" class="btn-wa">CONSULTAR</a>
+                        </div>
+                    `).join('')}
+                </div>`;
+            contenedor.appendChild(acc);
+        };
 
-        marcasD.forEach(m => {
-            const acc = document.createElement('div');
-            acc.className = 'accordion';
-            acc.innerHTML = `<div class="accordion-header" onclick="toggle(this)">${m} <span>+</span></div><div class="accordion-content"></div>`;
-            perfumes.filter(p=>p.m===m).forEach(p=> acc.querySelector('.accordion-content').innerHTML += buildCard(p));
-            dis.appendChild(acc);
-        });
+        marcasA.forEach(m => crearAcc(m, perfumes, arabesCont));
+        marcasD.forEach(m => crearAcc(m, perfumes, disenadorCont));
     }
 
-    function toggle(el) {
+    function toggleAcc(el) {
         const content = el.nextElementSibling;
-        content.style.display = content.style.display === 'grid' ? 'none' : 'grid';
+        const span = el.querySelector('span');
+        content.style.display = (content.style.display === "grid") ? "none" : "grid";
+        span.innerText = (content.style.display === "grid") ? "-" : "+";
     }
 
     function filtrar() {
-        const val = document.getElementById('buscador').value.toLowerCase();
-        document.querySelectorAll('.card').forEach(c => {
-            c.style.display = c.getAttribute('data-search').toLowerCase().includes(val) ? 'flex' : 'none';
+        const q = document.getElementById('buscador').value.toLowerCase();
+        document.querySelectorAll('.card').forEach(card => {
+            const visible = card.getAttribute('data-name').toLowerCase().includes(q);
+            card.style.display = visible ? 'block' : 'none';
         });
     }
-
-    render();
+    renderizar();
 </script>
 </body>
 </html>
