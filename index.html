@@ -121,4 +121,3 @@ function fic(id){const p=P.find(x=>x.id===id);if(!p)return;curF=id;
 $('fic').innerHTML=`<button class="cx" data-c style="padding:8px 14px;border:0;border-radius:6px;font-weight:700">✕ Cerrar</button><img src="${p.i||PH}" alt="${p.n}"><div class="br">${p.b}</div><h2>${p.n}</h2><div class="sub">${[GN[p.g],p.u||(p.ml?p.ml+' ml':'')].filter(Boolean).join(' · ')}</div>${pr(p)}<a class="fg" target="_blank" rel="noopener" href="https://www.fragrantica.com/search/?query=${encodeURIComponent(p.b+' '+p.n)}">Ver notas y acordes en Fragrantica ↗</a><button class="buy" data-id="${p.id}">${p.mp==null?'CONSULTAR':'AGREGAR AL CARRITO'}</button>`;
 show('ovFic');try{history.replaceState(null,'','#'+id)}catch(e){}}
 rng();render();badge();if(location.hash&&location.hash.length>1)fic(decodeURIComponent(location.hash.slice(1)));
-</script></body></html
